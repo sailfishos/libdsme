@@ -4,8 +4,8 @@ Summary:    DSME dsmesock dynamic library
 Version:    0.64.1
 Release:    0
 Group:      System/System Control
-License:    LGPL
-URL:        https://github.com/nemomobile/libdsme
+License:    LGPLv2.1
+URL:        https://git.merproject.org/mer-core/libdsme
 Source0:    %{name}-%{version}.tar.bz2
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
@@ -19,7 +19,6 @@ Device State Management Entity.
 
 %package devel
 Summary:    Development files for dsme
-Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
 
 %description devel
@@ -29,7 +28,6 @@ that want to communicate with the Device State Management Entity.
 
 %package tests
 Summary:    Test suite for dsme
-Group:      Development/Libraries
 Requires:   %{name} = %{version}-%{release}
 
 %description tests

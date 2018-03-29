@@ -261,19 +261,20 @@ int dsmesock_send_with_extra(dsmesock_connection_t* conn,
   /* Is this connection valid? */
   node = g_slist_find(connections, conn);
   if (node == 0 || conn->is_open == 0) {
+    errno = ENOTCONN;
     return -1;
   }
 
   /* set up message header for sending */
-  memcpy(&header, msg, sizeof(header));
+  memcpy(&header, msg, sizeof header);
   buffers[count].iov_base = &header;
-  buffers[count].iov_len  = sizeof(header);
+  buffers[count].iov_len  = sizeof header;
   ++count;
 
   /* set up message body and existing extra data (if any) for sending */
-  if (m->line_size_ > sizeof(header)) {
-    buffers[count].iov_base = (void*)(((const char*)msg) + sizeof(header));
-    buffers[count].iov_len  = m->line_size_ - sizeof(header);
+  if (m->line_size_ > sizeof header) {
+    buffers[count].iov_base = (void *)((const char*)msg + sizeof header);
+    buffers[count].iov_len  = m->line_size_ - sizeof header;
     ++count;
   }
 

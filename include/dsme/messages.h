@@ -79,13 +79,13 @@ extern "C" {
 #define DSMEMSG_CAST(T, M)                                       \
  ((((const dsmemsg_generic_t*)(M))->size_ == sizeof(T)) ?        \
     (((const dsmemsg_generic_t*)(M))->type_ == DSME_MSG_ID_(T) ? \
-      (T*)(M) : 0) : 0) 
+      (T*)(M) : 0) : 0)
 
 
 /**
  * @defgroup message_if Message passing interface for modules
  * In addition to these functions, dsmesock_send() can be used from modules.
- */     
+ */
 
 #define DSMEMSG_PRIVATE_FIELDS \
   u_int32_t line_size_;        \

@@ -37,7 +37,7 @@ enum {
 };
 
 /**
-   Specific message type that is used to request sw watchdog 
+   Specific message type that is used to request sw watchdog
    @ingroup message_if
 */
 typedef struct {

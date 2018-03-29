@@ -68,6 +68,18 @@ typedef dsmemsg_generic_t DSM_MSGTYPE_BATTERY_EMPTY_IND;
 
 
 enum {
+    /* NOTE: dsme message types are defined in:
+     * - libdsme
+     * - libiphb
+     * - dsme
+     *
+     * When adding new message types
+     * 1) uniqueness of the identifiers must be
+     *    ensured accross all these source trees
+     * 2) the dsmemsg_id_name() function in libdsme
+     *    must be made aware of the new message type
+     */
+
     DSME_MSG_ENUM(DSM_MSGTYPE_STATE_CHANGE_IND,     0x00000301),
     DSME_MSG_ENUM(DSM_MSGTYPE_STATE_QUERY,          0x00000302),
     DSME_MSG_ENUM(DSM_MSGTYPE_SAVE_DATA_IND,        0x00000304),
@@ -117,12 +129,24 @@ typedef struct {
 
 
 enum {
+  /* NOTE: dsme message types are defined in:
+   * - libdsme
+   * - libiphb
+   * - dsme
+   *
+   * When adding new message types
+   * 1) uniqueness of the identifiers must be
+   *    ensured accross all these source trees
+   * 2) the dsmemsg_id_name() function in libdsme
+   *    must be made aware of the new message type
+   */
+
   DSME_MSG_ENUM(DSM_MSGTYPE_SET_ALARM_STATE,          0x00000307),
   DSME_MSG_ENUM(DSM_MSGTYPE_SET_CHARGER_STATE,        0x00000311),
   /* DSME_MSG_ENUM(DSM_MSGTYPE_SET_THERMAL_STATE,        0x00000312),  not used anymore */
   DSME_MSG_ENUM(DSM_MSGTYPE_SET_EMERGENCY_CALL_STATE, 0x00000313), /* D. Duck */
   DSME_MSG_ENUM(DSM_MSGTYPE_SET_BATTERY_STATE,        0x00000314),
-  DSME_MSG_ENUM(DSM_MSGTYPE_SET_THERMAL_STATUS,       0x00000315),
+  DSME_MSG_ENUM(DSM_MSGTYPE_SET_THERMAL_STATUS,       0x00000320),
 };
 
 #endif

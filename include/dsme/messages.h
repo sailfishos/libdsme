@@ -130,6 +130,18 @@ typedef dsmemsg_generic_t DSM_MSGTYPE_SET_TA_TEST_MODE;
 
 
 enum {
+    /* NOTE: dsme message types are defined in:
+     * - libdsme
+     * - libiphb
+     * - dsme
+     *
+     * When adding new message types
+     * 1) uniqueness of the identifiers must be
+     *    ensured accross all these source trees
+     * 2) the dsmemsg_id_name() function in libdsme
+     *    must be made aware of the new message type
+     */
+
     /* DSME Protocol messages 000000xx */
     DSME_MSG_ENUM(DSM_MSGTYPE_CLOSE,            0x00000001),
 
@@ -139,9 +151,98 @@ enum {
     DSME_MSG_ENUM(DSM_MSGTYPE_SET_TA_TEST_MODE, 0x00001102),
 };
 
-void* dsmemsg_new(u_int32_t id, size_t size, size_t extra);
+/** Allocate new dsme message object
+ *
+ * @note It is expected that application code does not
+ *       make calls to this function.
+ *
+ * @note Really, do not call this function.
+ *
+ * @sa #DSME_MSG_NEW_WITH_EXTRA()
+ * @sa #DSME_MSG_NEW()
+ * @sa #dsmeipc_send_full()
+ * @sa #dsmeipc_send_with_string()
+ * @sa #dsmesock_send_with_extra()
+ *
+ *
+ * @param id     message type identifier
+ * @param size   message body size
+ * @param extra  space to reserve for extra data
+ */
+void *dsmemsg_new(u_int32_t id, size_t size, size_t extra);
 
-u_int32_t dsmemsg_id(const dsmemsg_generic_t* msg);
+/** Get dsme message type identifier
+ *
+ * @param msg message pointer
+ *
+ * @return type identifier
+ */
+u_int32_t dsmemsg_id(const dsmemsg_generic_t *msg);
+
+/** Get human readable name of dsme message type
+ *
+ * @param msg message pointer, or NULL
+ *
+ * @return name of the message type, or "NULL_MESSAGE"
+ *
+ * @sa dsmemsg_id_name()
+ */
+const char *dsmemsg_name(const dsmemsg_generic_t *msg);
+
+/** Get dsme message body size
+ *
+ * @param msg message pointer
+ *
+ * @return size of the message body
+ */
+size_t dsmemsg_size(const dsmemsg_generic_t *msg);
+
+/** Get dsme message line size
+ *
+ * @param msg message pointer
+ *
+ * @return total size occupied by the message
+ */
+size_t dsmemsg_line_size(const dsmemsg_generic_t *msg);
+
+/** Get dsme message extra size
+ *
+ * @param msg message pointer
+ *
+ * @return size of extra data attached to the message
+ *
+ * @sa dsmemsg_extra_data()
+ */
+size_t dsmemsg_extra_size(const dsmemsg_generic_t *msg);
+
+/** Get pointer to dsme message extra data
+ *
+ * @param msg message pointer
+ *
+ * @return pointer to extra data attached to the message,
+ *         or NULL
+ *
+ * @sa dsmemsg_extra_size()
+ */
+const void *dsmemsg_extra_data(const dsmemsg_generic_t *msg);
+
+/** Get human readable name of dsme message type identifier
+ *
+ * @note This function is meant to be used only for purposes
+ *       of diagnostic logging.
+ *
+ * For known message types returns true const string.
+ *
+ * For unknown types statically allocated buffer is
+ * used to return "UNKNOWN_<ID-IN-HEX>" type string.
+ *
+ * @param id message type identifier
+ *
+ * @return human readable message type name
+ *
+ * @sa dsmemsg_name()
+ */
+const char * dsmemsg_id_name(u_int32_t id);
 
 #ifdef __cplusplus
 }

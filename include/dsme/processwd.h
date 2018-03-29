@@ -27,12 +27,24 @@
 #include "dsme/messages.h"
 
 enum {
+    /* NOTE: dsme message types are defined in:
+     * - libdsme
+     * - libiphb
+     * - dsme
+     *
+     * When adding new message types
+     * 1) uniqueness of the identifiers must be
+     *    ensured accross all these source trees
+     * 2) the dsmemsg_id_name() function in libdsme
+     *    must be made aware of the new message type
+     */
+
     DSME_MSG_ENUM(DSM_MSGTYPE_PROCESSWD_CREATE,       0x000000500),
     DSME_MSG_ENUM(DSM_MSGTYPE_PROCESSWD_DELETE,       0x000000501),
     DSME_MSG_ENUM(DSM_MSGTYPE_PROCESSWD_CLEAR,        0x000000502),
     DSME_MSG_ENUM(DSM_MSGTYPE_PROCESSWD_SET_INTERVAL, 0x000000503),
     DSME_MSG_ENUM(DSM_MSGTYPE_PROCESSWD_PING,         0x000000504),
-    DSME_MSG_ENUM(DSM_MSGTYPE_PROCESSWD_PONG,         0x000000504),
+    DSME_MSG_ENUM(DSM_MSGTYPE_PROCESSWD_PONG,         0x000000506),
     DSME_MSG_ENUM(DSM_MSGTYPE_PROCESSWD_MANUAL_PING,  0x000000505),
 };
 

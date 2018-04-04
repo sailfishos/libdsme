@@ -1,3 +1,11 @@
+libdsme (0.65.0) unstable; urgency=low
+
+  * [protocol] Fix message io vector size calculation
+  * [protocol] Set errno when abandoning dsmesock_send_with_extra()
+  * [messages] Make dsme message type identifiers unique. JB#38500
+
+ -- Simo Piiroinen <simo.piiroinen@jollamobile.com>  Wed, 04 Apr 2018 08:42:03 +0300
+
 libdsme (0.64.2) unstable; urgency=low
 
   * [license] Unify open source licenses. Contributes to JB#33648

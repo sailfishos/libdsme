@@ -100,8 +100,12 @@ install_tests::
 # Common options
 # ----------------------------------------------------------------------------
 
+CFLAGS   += -std=c99
 CFLAGS   += -O2
-CFLAGS   += -Wall -Wwrite-strings -Wmissing-prototypes -Werror
+CFLAGS   += -Wall
+CFLAGS   += -Wwrite-strings
+CFLAGS   += -Wmissing-prototypes
+CFLAGS   += -Werror
 
 CFLAGS   += -g
 LDFLAGS  += -g

@@ -4,9 +4,12 @@
    This file has defines for state module in DSME.
    <p>
    Copyright (C) 2004-2009 Nokia Corporation.
+   Copyright (C) 2014-2018 Jolla Ltd.
 
    @author Ismo Laitinen <ismo.laitinen@nokia.com>
    @author Semi Malinen <semi.malinen@nokia.com>
+   @author Pekka Lundstrom <pekka.lundstrom@jollamobile.com>
+   @author Simo Piiroinen <simo.piiroinen@jollamobile.com>
 
    This file is part of Dsme.
 
@@ -112,6 +115,20 @@ typedef struct {
   bool empty;
 } DSM_MSGTYPE_SET_BATTERY_STATE;
 
+/** Battery level constants
+ */
+typedef enum
+{
+  DSME_BATTERY_LEVEL_UNKNOWN  =  -1,
+  DSME_BATTERY_LEVEL_MINIMUM  =   0,
+  DSME_BATTERY_LEVEL_MAXIMUM  = 100,
+} dsme_battery_level_t;
+
+typedef struct {
+  DSMEMSG_PRIVATE_FIELDS
+  dsme_battery_level_t level;
+} DSM_MSGTYPE_SET_BATTERY_LEVEL;
+
 typedef enum {
   DSM_THERMAL_STATUS_NORMAL = 0,
   DSM_THERMAL_STATUS_LOWTEMP = 1,
@@ -146,6 +163,7 @@ enum {
   /* DSME_MSG_ENUM(DSM_MSGTYPE_SET_THERMAL_STATE,        0x00000312),  not used anymore */
   DSME_MSG_ENUM(DSM_MSGTYPE_SET_EMERGENCY_CALL_STATE, 0x00000313), /* D. Duck */
   DSME_MSG_ENUM(DSM_MSGTYPE_SET_BATTERY_STATE,        0x00000314),
+  DSME_MSG_ENUM(DSM_MSGTYPE_SET_BATTERY_LEVEL,        0x0000031a),
   DSME_MSG_ENUM(DSM_MSGTYPE_SET_THERMAL_STATUS,       0x00000320),
 };
 

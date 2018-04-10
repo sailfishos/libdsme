@@ -4,8 +4,10 @@
    Implements DSME message methods.
    <p>
    Copyright (C) 2004-2009 Nokia Corporation.
+   Copyright (C) 2015-2018 Jolla Ltd.
 
    @author Semi Malinen <semi.malinen@nokia.com>
+   @author Simo Piiroinen <simo.piiroinen@jollamobile.com>
 
    This file is part of Dsme.
 
@@ -57,11 +59,12 @@ static const struct
     { "SET_EMERGENCY_CALL_STATE",       0x00000313 },
     { "SET_BATTERY_STATE",              0x00000314 },
     { "BATTERY_EMPTY_IND",              0x00000315 },
-    { "SET_THERMAL_STATUS",             0x00000320 },
     { "SHUTDOWN",                       0x00000316 },
     { "SET_USB_STATE",                  0x00000317 },
     { "TELINIT",                        0x00000318 },
     { "CHANGE_RUNLEVEL",                0x00000319 },
+    { "SET_BATTERY_LEVEL",              0x0000031a },
+    { "SET_THERMAL_STATUS",             0x00000320 },
     { "PROCESSWD_CREATE",               0x00000500 },
     { "PROCESSWD_DELETE",               0x00000501 },
     { "PROCESSWD_CLEAR",                0x00000502 },

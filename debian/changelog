@@ -1,3 +1,9 @@
+libdsme (0.66.0) unstable; urgency=low
+
+  * [messages] Add DSM_MSGTYPE_SET_BATTERY_LEVEL. JB#41302
+
+ -- Simo Piiroinen <simo.piiroinen@jollamobile.com>  Tue, 10 Apr 2018 21:41:53 +0300
+
 libdsme (0.65.0) unstable; urgency=low
 
   * [protocol] Fix message io vector size calculation

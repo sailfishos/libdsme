@@ -40,7 +40,7 @@ This package contains test suite for libdsme.
 %build
 ./verify_version
 unset LD_AS_NEEDED
-make %{?jobs:-j%jobs}
+make %{?_smp_mflags}
 
 %install
 rm -rf %{buildroot}
@@ -52,25 +52,22 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libdsme.so.*
-%{_libdir}/libdsme_dbus_if.so.*
+%{_libdir}/%{name}.so.*
+%{_libdir}/%{name}_dbus_if.so.*
 %{_libdir}/libthermalmanager_dbus_if.so.*
-%doc debian/copyright
-%doc COPYING
+%license COPYING debian/copyright
 
 %files devel
 %defattr(-,root,root,-)
 %dir %{_includedir}/dsme
 %{_includedir}/dsme/*
-%{_libdir}/libdsme.so
-%{_libdir}/libdsme_dbus_if.so
+%{_libdir}/%{name}.so
+%{_libdir}/%{name}_dbus_if.so
 %{_libdir}/libthermalmanager_dbus_if.so
 %dir %{_libdir}/pkgconfig
 %{_libdir}/pkgconfig/*
 
 %files tests
 %defattr(-,root,root,-)
-%dir /opt
 %dir /opt/tests
-%dir /opt/tests/libdsme
-/opt/tests/libdsme/*
+/opt/tests/%{name}

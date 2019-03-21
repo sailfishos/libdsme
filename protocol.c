@@ -30,6 +30,7 @@
 #include "include/dsme/protocol.h"
 #include "include/dsme/messages.h"
 
+#include <sys/uio.h>
 #include <glib.h>
 #include <sys/types.h>
 #include <malloc.h>

@@ -1,3 +1,10 @@
+libdsme (0.66.1) unstable; urgency=low
+
+  * [packaging] Use %license for license files. Contributes to JB#24119
+  * [protocol] Fix compilation error due to undeclared writev(). Fixes JB#45208
+
+ -- Simo Piiroinen <simo.piiroinen@jollamobile.com>  Thu, 21 Mar 2019 14:16:53 +0200
+
 libdsme (0.66.0) unstable; urgency=low
 
   * [messages] Add DSM_MSGTYPE_SET_BATTERY_LEVEL. JB#41302

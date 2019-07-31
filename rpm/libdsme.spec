@@ -4,8 +4,8 @@ Summary:    DSME dsmesock dynamic library
 Version:    0.66.1
 Release:    0
 Group:      System/System Control
-License:    LGPLv2.1
-URL:        https://git.merproject.org/mer-core/libdsme
+License:    LGPLv2
+URL:        https://git.sailfishos.org/mer-core/libdsme
 Source0:    %{name}-%{version}.tar.bz2
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig

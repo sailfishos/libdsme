@@ -1,3 +1,9 @@
+libdsme (0.66.2) unstable; urgency=low
+
+  * [packaging] Fix license, update URL. Contributes to JB#45486
+
+ -- Simo Piiroinen <simo.piiroinen@jollamobile.com>  Thu, 01 Aug 2019 09:01:40 +0300
+
 libdsme (0.66.1) unstable; urgency=low
 
   * [packaging] Use %license for license files. Contributes to JB#24119

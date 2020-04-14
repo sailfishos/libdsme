@@ -38,7 +38,7 @@
 static const struct
 {
     const char *name;
-    u_int32_t   id;
+    uint32_t   id;
 } dsmemsg_id_lut[] =
 {
     { "CLOSE",                          0x00000001 },
@@ -90,7 +90,7 @@ static const struct
 };
 
 const char *
-dsmemsg_id_name(u_int32_t id)
+dsmemsg_id_name(uint32_t id)
 {
     for( size_t i = 0; dsmemsg_id_lut[i].name; ++i ) {
         if( dsmemsg_id_lut[i].id == id )
@@ -104,7 +104,7 @@ dsmemsg_id_name(u_int32_t id)
 }
 
 void *
-dsmemsg_new(u_int32_t id, size_t size, size_t extra)
+dsmemsg_new(uint32_t id, size_t size, size_t extra)
 {
     dsmemsg_generic_t *msg = calloc(1, size + extra);
     if (msg == NULL) {
@@ -119,7 +119,7 @@ dsmemsg_new(u_int32_t id, size_t size, size_t extra)
     return msg;
 }
 
-u_int32_t dsmemsg_id(const dsmemsg_generic_t *msg)
+uint32_t dsmemsg_id(const dsmemsg_generic_t *msg)
 {
   return msg->type_;
 }

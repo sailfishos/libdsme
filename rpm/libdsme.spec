@@ -44,7 +44,9 @@ make %{?_smp_mflags}
 
 %install
 rm -rf %{buildroot}
-%make_install
+make install LIBDIR=%{_libdir} DESTDIR=%{?buildroot}
+# remove static libs
+rm  %{buildroot}%{_libdir}/*.a
 
 %post -p /sbin/ldconfig
 

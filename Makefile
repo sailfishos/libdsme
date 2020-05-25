@@ -38,6 +38,9 @@ TARGETS_ALL    += $(TARGETS_LIB) $(TARGETS_DSO) $(TARGETS_UT_BIN)
 # Dummy default install dir - override from packaging scripts
 DESTDIR ?= /tmp/libdsme-test-install
 
+# Define LIBDIR so we can override it if needed
+LIBDIR  ?= /usr/lib
+
 # ----------------------------------------------------------------------------
 # Top level targets
 # ----------------------------------------------------------------------------
@@ -60,23 +63,23 @@ install :: install_main install_devel install_tests
 
 install_main::
 	# dynamic libraries
-	install -d -m 755 $(DESTDIR)/usr/lib
-	install -m 644 $(TARGETS_DSO) $(DESTDIR)/usr/lib
+	install -d -m 755 $(DESTDIR)$(LIBDIR)
+	install -m 644 $(TARGETS_DSO) $(DESTDIR)$(LIBDIR)
 
 install_devel::
 	# headers
 	install -d -m 755 $(DESTDIR)/usr/include/dsme
 	install -m 644 $(INSTALL_HDR) $(DESTDIR)/usr/include/dsme
 	# pkg config
-	install -d -m 755 $(DESTDIR)/usr/lib/pkgconfig
-	install -m 644 $(INSTALL_PC) $(DESTDIR)/usr/lib/pkgconfig
+	install -d -m 755 $(DESTDIR)$(LIBDIR)/pkgconfig
+	install -m 644 $(INSTALL_PC) $(DESTDIR)$(LIBDIR)/pkgconfig
 	# static libraries
-	install -d -m 755 $(DESTDIR)/usr/lib
-	install -m 644 $(TARGETS_LIB) $(DESTDIR)/usr/lib
+	install -d -m 755 $(DESTDIR)$(LIBDIR)
+	install -m 644 $(TARGETS_LIB) $(DESTDIR)$(LIBDIR)
 	# symlinks for dynamic linking
 	for f in $(TARGETS_DSO); do \
 	  ln -sf $$(basename $$f $(SOVERS))$(SONAME) \
-	    $(DESTDIR)/usr/lib/$$(basename $$f $(SOVERS))$(SOLINK); \
+	    $(DESTDIR)$(LIBDIR)/$$(basename $$f $(SOVERS))$(SOLINK); \
 	done
 
 install_tests::

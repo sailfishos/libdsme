@@ -1,3 +1,9 @@
+libdsme (0.66.4) unstable; urgency=low
+
+  * [packaging] Install library as executable. JB#51013
+
+ -- Simo Piiroinen <simo.piiroinen@jollamobile.com>  Tue, 01 Sep 2020 10:17:04 +0300
+
 libdsme (0.66.3) unstable; urgency=low
 
   * [aarch64] Specify libdir. Contributes to JB#49681

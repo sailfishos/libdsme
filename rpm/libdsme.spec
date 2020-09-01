@@ -1,7 +1,7 @@
 Name:       libdsme
 
 Summary:    DSME dsmesock dynamic library
-Version:    0.66.3
+Version:    0.66.4
 Release:    0
 Group:      System/System Control
 License:    LGPLv2

@@ -64,7 +64,7 @@ install :: install_main install_devel install_tests
 install_main::
 	# dynamic libraries
 	install -d -m 755 $(DESTDIR)$(LIBDIR)
-	install -m 644 $(TARGETS_DSO) $(DESTDIR)$(LIBDIR)
+	install -m 755 $(TARGETS_DSO) $(DESTDIR)$(LIBDIR)
 
 install_devel::
 	# headers

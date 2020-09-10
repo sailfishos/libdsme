@@ -1,5 +1,5 @@
 # Package version
-VERSION   := 0.66.4
+VERSION   := 0.66.5
 
 # Shared object version
 SOMAJOR   := .0

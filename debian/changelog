@@ -1,3 +1,9 @@
+libdsme (0.66.5) unstable; urgency=low
+
+  * [protocol,alarm] use C extern in the headers
+
+ -- Simo Piiroinen <simo.piiroinen@jollamobile.com>  Thu, 10 Sep 2020 12:30:00 +0300
+
 libdsme (0.66.4) unstable; urgency=low
 
   * [packaging] Install library as executable. JB#51013

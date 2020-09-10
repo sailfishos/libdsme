@@ -25,21 +25,19 @@
 #ifndef DSME_ALARM_LIMIT_H
 #define DSME_ALARM_LIMIT_H
 
-#ifndef EXTERN_C
 #ifdef __cplusplus
-#define EXTERN_C extern "C"
-#else
-#define EXTERN_C
+extern "C" {
 #endif
-#endif
-
 
 /**
    Function returns the maximum time to next alarm that will make
    dsme convert a shutdown to actdead.
    @return SNOOZE_TIMEOUT
 */
-EXTERN_C int dsme_snooze_timeout_in_seconds(void);
+int dsme_snooze_timeout_in_seconds(void);
 
+#ifdef __cplusplus
+};
+#endif
 
 #endif

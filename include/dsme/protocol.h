@@ -39,14 +39,9 @@
 #include <sys/socket.h>
 #include <sys/un.h>
 
-#ifndef EXTERN_C
 #ifdef __cplusplus
-#define EXTERN_C extern "C"
-#else
-#define EXTERN_C
+extern "C" {
 #endif
-#endif
-
 
 /**
  * @defgroup dsmesock DSMEsock library
@@ -89,7 +84,7 @@ typedef struct dsmesock_connection_t {
    @ingroup dsmesock_client
    @return pointer to connection structure.
 */
-EXTERN_C dsmesock_connection_t*  dsmesock_connect(void);
+dsmesock_connection_t*  dsmesock_connect(void);
 
 /**
    Creates connection structure for an existing socket. The socket is put to
@@ -98,7 +93,7 @@ EXTERN_C dsmesock_connection_t*  dsmesock_connect(void);
    @param fd	File handle for the socket.
    @return connection structure.
 */
-EXTERN_C dsmesock_connection_t*  dsmesock_init(int fd);
+dsmesock_connection_t*  dsmesock_init(int fd);
 
 /**
    Receives data from connection.
@@ -106,7 +101,7 @@ EXTERN_C dsmesock_connection_t*  dsmesock_init(int fd);
    @param conn	Connection to be read.
    @return pointer to received message.
 */
-EXTERN_C void* dsmesock_receive(dsmesock_connection_t* conn);
+void* dsmesock_receive(dsmesock_connection_t* conn);
 
 
 /**
@@ -117,9 +112,9 @@ EXTERN_C void* dsmesock_receive(dsmesock_connection_t* conn);
    @param msg	Pointer to message to be sent.
    @return Number of bytes sent, or -1 on error.
 */
-EXTERN_C int dsmesock_send(dsmesock_connection_t* conn, const void* msg);
+int dsmesock_send(dsmesock_connection_t* conn, const void* msg);
 
-EXTERN_C int dsmesock_send_with_extra(dsmesock_connection_t* conn,
+int dsmesock_send_with_extra(dsmesock_connection_t* conn,
                                       const void*            msg,
                                       size_t                 extra_size,
                                       const void*            extra);
@@ -130,9 +125,9 @@ EXTERN_C int dsmesock_send_with_extra(dsmesock_connection_t* conn,
    @ingroup message_if
    @param msg  Pointer to message to be sent.
 */
-EXTERN_C void dsmesock_broadcast(const void* msg);
+void dsmesock_broadcast(const void* msg);
 
-EXTERN_C void dsmesock_broadcast_with_extra(const void* msg,
+void dsmesock_broadcast_with_extra(const void* msg,
                                             size_t      extra_size,
                                             const void* extra);
 
@@ -141,7 +136,7 @@ EXTERN_C void dsmesock_broadcast_with_extra(const void* msg,
    @ingroup dsmesock_client
    @param conn  Connection to be closed.
 */
-EXTERN_C void dsmesock_close(dsmesock_connection_t* conn);
+void dsmesock_close(dsmesock_connection_t* conn);
 
 
 /**
@@ -150,12 +145,16 @@ EXTERN_C void dsmesock_close(dsmesock_connection_t* conn);
    @param conn  Connection
    @return pointer to @c ucred structure.
 */
-EXTERN_C const struct ucred* dsmesock_getucred(dsmesock_connection_t* conn);
+const struct ucred* dsmesock_getucred(dsmesock_connection_t* conn);
 
 
 /**
    Holds path to dsme socket default location
 */
-EXTERN_C const char* dsmesock_default_location;
+extern const char* dsmesock_default_location;
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif

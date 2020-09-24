@@ -65,7 +65,7 @@ typedef dsmemsg_generic_t     DSM_MSGTYPE_PROCESSWD_MANUAL_PING;
 
 typedef struct {
   DSMEMSG_PRIVATE_FIELDS
-  u_int32_t timeout;
+  uint32_t timeout;
 } DSM_MSGTYPE_PROCESSWD_SET_INTERVAL;
 
 #endif

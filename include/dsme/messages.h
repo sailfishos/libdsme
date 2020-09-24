@@ -29,6 +29,7 @@
 
 #include <stddef.h>
 #include <sys/types.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -88,9 +89,9 @@ extern "C" {
  */
 
 #define DSMEMSG_PRIVATE_FIELDS \
-  u_int32_t line_size_;        \
-  u_int32_t size_;             \
-  u_int32_t type_;
+  uint32_t line_size_;        \
+  uint32_t size_;             \
+  uint32_t type_;
 
 /**
    Generic message type
@@ -107,7 +108,7 @@ typedef struct dsmemsg_generic_t {
 */
 typedef struct {
   DSMEMSG_PRIVATE_FIELDS
-  u_int8_t reason;
+  uint8_t reason;
 } DSM_MSGTYPE_CLOSE;
 
 /**
@@ -169,7 +170,7 @@ enum {
  * @param size   message body size
  * @param extra  space to reserve for extra data
  */
-void *dsmemsg_new(u_int32_t id, size_t size, size_t extra);
+void *dsmemsg_new(uint32_t id, size_t size, size_t extra);
 
 /** Get dsme message type identifier
  *
@@ -177,7 +178,7 @@ void *dsmemsg_new(u_int32_t id, size_t size, size_t extra);
  *
  * @return type identifier
  */
-u_int32_t dsmemsg_id(const dsmemsg_generic_t *msg);
+uint32_t dsmemsg_id(const dsmemsg_generic_t *msg);
 
 /** Get human readable name of dsme message type
  *
@@ -242,7 +243,7 @@ const void *dsmemsg_extra_data(const dsmemsg_generic_t *msg);
  *
  * @sa dsmemsg_name()
  */
-const char * dsmemsg_id_name(u_int32_t id);
+const char * dsmemsg_id_name(uint32_t id);
 
 #ifdef __cplusplus
 }

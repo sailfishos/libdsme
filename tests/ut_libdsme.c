@@ -127,7 +127,7 @@ static int mock(void)
 
 START_TEST(test_message)
 {
-    const u_int32_t id = 42;
+    const uint32_t id = 42;
 
     dsmemsg_generic_t* msg = dsmemsg_new(id, sizeof(dsmemsg_generic_t), sizeof(int));
 

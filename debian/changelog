@@ -1,3 +1,9 @@
+libdsme (0.66.6) unstable; urgency=low
+
+  * Replace u_int*_t usages for the newer uint*_t
+
+ -- Simo Piiroinen <simo.piiroinen@jollamobile.com>  Thu, 24 Sep 2020 18:42:41 +0300
+
 libdsme (0.66.5) unstable; urgency=low
 
   * [protocol,alarm] use C extern in the headers

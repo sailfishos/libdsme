@@ -44,7 +44,7 @@
 
 static GSList* connections = 0;
 
-const char* dsmesock_default_location = "/run/dsme.socket";
+static const char* dsmesock_default_location = "/run/dsme.socket";
 
 dsmesock_connection_t* dsmesock_connect(void)
 {

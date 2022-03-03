@@ -1,3 +1,9 @@
+libdsme (0.66.7) unstable; urgency=low
+
+  * [ut_libdsme] Fix random test failures. Fixes JB#57276
+
+ -- Simo Piiroinen <simo.piiroinen@jolla.com>  Thu, 03 Mar 2022 10:46:51 +0200
+
 libdsme (0.66.6) unstable; urgency=low
 
   * Replace u_int*_t usages for the newer uint*_t

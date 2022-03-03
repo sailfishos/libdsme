@@ -62,6 +62,9 @@ dsmesock_connection_t* dsmesock_connect(void)
 
       memset(&c_addr, 0, sizeof(c_addr));
       c_addr.sun_family = AF_UNIX;
+      if (strlen(dsmesock_filename) >= sizeof(c_addr.sun_path)) {
+          return NULL;
+      }
       strcpy(c_addr.sun_path, dsmesock_filename);
 
       if (connect(fd, (struct sockaddr *)&c_addr, sizeof(c_addr)) == -1 ||

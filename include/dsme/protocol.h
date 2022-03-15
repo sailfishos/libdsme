@@ -147,12 +147,6 @@ void dsmesock_close(dsmesock_connection_t* conn);
 */
 const struct ucred* dsmesock_getucred(dsmesock_connection_t* conn);
 
-
-/**
-   Holds path to dsme socket default location
-*/
-extern const char* dsmesock_default_location;
-
 #ifdef __cplusplus
 };
 #endif

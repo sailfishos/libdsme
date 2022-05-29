@@ -161,18 +161,19 @@ void* dsmesock_receive(dsmesock_connection_t* conn)
   if (conn->bufused >= sizeof(dsmemsg_generic_t)) {
       dsmemsg_generic_t* msg = (dsmemsg_generic_t*)conn->buf;
 
-      if (msg->line_size_ <= DSMESOCK_BUF_SIZE_MAX) {
+      uint32_t msg_line_size = msg->line_size_;
+      if (msg_line_size <= DSMESOCK_BUF_SIZE_MAX) {
           /* increase buffer if necessary */
-          if (conn->bufsize < msg->line_size_) {
+          if (conn->bufsize < msg_line_size) {
               unsigned char* newbuf = (unsigned char*)realloc(conn->buf,
-                                                              msg->line_size_);
+                                                              msg_line_size);
               if (newbuf == 0) return 0; /* Try again later */
               conn->buf     = newbuf;
-              conn->bufsize = msg->line_size_;
+              conn->bufsize = msg_line_size;
           }
 
-          while (conn->bufused < msg->line_size_) {
-              read_size = msg->line_size_ - conn->bufused;
+          while (conn->bufused < msg_line_size) {
+              read_size = msg_line_size - conn->bufused;
 
               if ((ret = read(conn->fd, conn->buf+conn->bufused, read_size)) <=
                   0)

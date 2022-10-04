@@ -94,10 +94,9 @@ dsmesock_connection_t* dsmesock_init(int fd)
 
   if(-1 == fcntl(fd, F_SETFL, O_NONBLOCK))  return 0;
 
-  newconn = (dsmesock_connection_t*)malloc(sizeof(dsmesock_connection_t));
+  newconn = calloc(1, sizeof *newconn);
   if (newconn == 0) return 0;
 
-  memset(newconn, 0, sizeof(dsmesock_connection_t));
   newconn->fd      = fd;
   newconn->is_open = 1;
   newconn->channel = 0;
@@ -140,7 +139,7 @@ void* dsmesock_receive(dsmesock_connection_t* conn)
   /* Allocate buffer if necessary */
   if (conn->bufsize == 0 || conn->buf == 0) {
       /* Begin with 1k buffer (more than enough for most purposes) */
-      conn->buf = (unsigned char*)malloc(DSMESOCK_BUF_SIZE_DEFAULT);
+      conn->buf = malloc(DSMESOCK_BUF_SIZE_DEFAULT);
       if (conn->buf == 0) return 0;
       conn->bufused = 0;
       conn->bufsize = DSMESOCK_BUF_SIZE_DEFAULT;
@@ -165,8 +164,7 @@ void* dsmesock_receive(dsmesock_connection_t* conn)
       if (msg_line_size <= DSMESOCK_BUF_SIZE_MAX) {
           /* increase buffer if necessary */
           if (conn->bufsize < msg_line_size) {
-              unsigned char* newbuf = (unsigned char*)realloc(conn->buf,
-                                                              msg_line_size);
+              unsigned char* newbuf = realloc(conn->buf, msg_line_size);
               if (newbuf == 0) return 0; /* Try again later */
               conn->buf     = newbuf;
               conn->bufsize = msg_line_size;

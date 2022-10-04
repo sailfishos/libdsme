@@ -1,3 +1,11 @@
+libdsme (0.66.8) unstable; urgency=low
+
+  * [protocol] Fix build with -Werror=use-after-free
+  * [protocol] Remove unnecessary casts
+  * [protocol] Remove pointer aliasing. JB#49555
+
+ -- Simo Piiroinen <simo.piiroinen@jolla.com>  Tue, 04 Oct 2022 12:36:57 +0300
+
 libdsme (0.66.7) unstable; urgency=low
 
   * [ut_libdsme] Fix random test failures. Fixes JB#57276

@@ -158,9 +158,7 @@ void* dsmesock_receive(dsmesock_connection_t* conn)
 
   /* read message body (if any) */
   if (conn->bufused >= sizeof(dsmemsg_generic_t)) {
-      dsmemsg_generic_t* msg = (dsmemsg_generic_t*)conn->buf;
-
-      uint32_t msg_line_size = msg->line_size_;
+      size_t msg_line_size = dsmemsg_line_size((dsmemsg_generic_t *)conn->buf);
       if (msg_line_size <= DSMESOCK_BUF_SIZE_MAX) {
           /* increase buffer if necessary */
           if (conn->bufsize < msg_line_size) {

@@ -36,6 +36,7 @@ extern const char dsme_get_state[];
 extern const char dsme_req_powerup[];
 extern const char dsme_req_reboot[];
 extern const char dsme_req_shutdown[];
+extern const char dsme_inhibit_shutdown[];
 
 extern const char dsme_state_req_denied_ind[];
 extern const char dsme_shutdown_ind[];

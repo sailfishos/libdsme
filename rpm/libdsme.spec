@@ -44,8 +44,6 @@ unset LD_AS_NEEDED
 
 %install
 %{make_install} %{makeflags}
-# remove static libs
-rm  %{buildroot}%{_libdir}/*.a
 
 %post -p /sbin/ldconfig
 

@@ -1,7 +1,7 @@
 Name:       libdsme
 
 Summary:    DSME dsmesock dynamic library
-Version:    0.66.8
+Version:    0.67.0
 Release:    0
 License:    LGPLv2
 URL:        https://github.com/sailfishos/libdsme

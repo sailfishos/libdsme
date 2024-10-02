@@ -1,3 +1,11 @@
+libdsme (0.67.0) unstable; urgency=low
+
+  * [dbus] Add method for shutdown inhibit control. JB#62532
+  * [packaging] Cleanup rpm spec
+  * [packaging] Do not build static libraries
+
+ -- Simo Piiroinen <simo.piiroinen@jolla.com>  Wed, 02 Oct 2024 10:49:51 +0300
+
 libdsme (0.66.8) unstable; urgency=low
 
   * [protocol] Fix build with -Werror=use-after-free

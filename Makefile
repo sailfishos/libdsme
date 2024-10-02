@@ -11,8 +11,6 @@ SONAME    := .so$(SOMAJOR)
 SOVERS    := .so$(SOMAJOR)$(SOMINOR)$(SORELEASE)
 
 # Files to build / install
-TARGETS_LIB    += libdsme.a
-
 TARGETS_DSO    += libdsme$(SOVERS)
 TARGETS_DSO    += libdsme_dbus_if$(SOVERS)
 TARGETS_DSO    += libthermalmanager_dbus_if$(SOVERS)
@@ -33,10 +31,10 @@ INSTALL_PC     += thermalmanager_dbus_if.pc
 TARGETS_UT_BIN += tests/ut_libdsme
 INSTALL_UT_XML += tests/tests.xml
 
-TARGETS_ALL    += $(TARGETS_LIB) $(TARGETS_DSO) $(TARGETS_UT_BIN)
+TARGETS_ALL    += $(TARGETS_DSO) $(TARGETS_UT_BIN)
 
 # Dummy default install dir - override from packaging scripts
-DESTDIR ?= /tmp/libdsme-test-install
+DESTDIR ?= libdsme-test-install
 
 # Define LIBDIR so we can override it if needed
 LIBDIR  ?= /usr/lib
@@ -63,31 +61,26 @@ install :: install_main install_devel install_tests
 
 install_main::
 	# dynamic libraries
-	install -d -m 755 $(DESTDIR)$(LIBDIR)
-	install -m 755 $(TARGETS_DSO) $(DESTDIR)$(LIBDIR)
+	install -m755 -D -t $(DESTDIR)$(LIBDIR) $(TARGETS_DSO)
+	for f in $(patsubst %$(SOVERS),%,$(TARGETS_DSO)); do \
+	  ln -sf "$$f$(SOVERS)" "$(DESTDIR)$(LIBDIR)/$$f$(SONAME)"; \
+	done
 
 install_devel::
 	# headers
-	install -d -m 755 $(DESTDIR)/usr/include/dsme
-	install -m 644 $(INSTALL_HDR) $(DESTDIR)/usr/include/dsme
+	install -m644 -D -t $(DESTDIR)/usr/include/dsme $(INSTALL_HDR)
 	# pkg config
-	install -d -m 755 $(DESTDIR)$(LIBDIR)/pkgconfig
-	install -m 644 $(INSTALL_PC) $(DESTDIR)$(LIBDIR)/pkgconfig
-	# static libraries
-	install -d -m 755 $(DESTDIR)$(LIBDIR)
-	install -m 644 $(TARGETS_LIB) $(DESTDIR)$(LIBDIR)
-	# symlinks for dynamic linking
-	for f in $(TARGETS_DSO); do \
-	  ln -sf $$(basename $$f $(SOVERS))$(SONAME) \
-	    $(DESTDIR)$(LIBDIR)/$$(basename $$f $(SOVERS))$(SOLINK); \
+	install -m644 -D -t $(DESTDIR)$(LIBDIR)/pkgconfig $(INSTALL_PC)
+	# dynamic library symlinks
+	for f in $(patsubst %$(SOVERS),%,$(TARGETS_DSO)); do \
+	  ln -sf "$$f$(SONAME)" "$(DESTDIR)$(LIBDIR)/$$f$(SOLINK)"; \
 	done
 
 install_tests::
 	# xml
-	install -d -m 755 $(DESTDIR)/opt/tests/libdsme
-	install -m644 $(INSTALL_UT_XML) $(DESTDIR)/opt/tests/libdsme
+	install -m644 -D -t $(DESTDIR)/opt/tests/libdsme $(INSTALL_UT_XML)
 	# binary
-	install -m755 $(TARGETS_UT_BIN) $(DESTDIR)/opt/tests/libdsme
+	install -m755 -D -t $(DESTDIR)/opt/tests/libdsme $(TARGETS_UT_BIN)
 
 # ----------------------------------------------------------------------------
 # Build rules
@@ -97,7 +90,6 @@ install_tests::
 %.o         : %.c ; $(CC) -o $@ -c $< $(CPPFLAGS) $(CFLAGS)
 %$(SOVERS)  :     ; $(CC) -o $@ -shared -Wl,-soname,$*$(SONAME) $^ $(LDFLAGS) $(LDLIBS)
 %           : %.o ; $(CC) -o $@ $^ $(LDFLAGS) $(LDLIBS)
-%.a         :     ; $(AR) ru $@ $^
 
 # ----------------------------------------------------------------------------
 # Common options
@@ -116,7 +108,7 @@ LDFLAGS  += -g
 LDFLAGS  += -Wl,--as-needed
 
 # ----------------------------------------------------------------------------
-# libdsme$(SOVERS) and libdsme.a
+# libdsme$(SOVERS)
 # ----------------------------------------------------------------------------
 
 libdsme_OBJ += protocol.pic.o message.pic.o alarm_limit.pic.o
@@ -125,9 +117,6 @@ libdsme_PC  += glib-2.0
 libdsme$(SOVERS) : CFLAGS += $$(pkg-config --cflags $(libdsme_PC))
 libdsme$(SOVERS) : LDLIBS += $$(pkg-config --libs $(libdsme_PC))
 libdsme$(SOVERS) : $(libdsme_OBJ)
-
-libdsme.a : CFLAGS += $$(pkg-config --cflags $(libdsme_PC))
-libdsme.a : $(patsubst %.pic.o, %.o, $(libdsme_OBJ))
 
 # ----------------------------------------------------------------------------
 # libdsme_dbus_if$(SOVERS)

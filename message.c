@@ -64,6 +64,8 @@ static const struct
     { "TELINIT",                        0x00000318 },
     { "CHANGE_RUNLEVEL",                0x00000319 },
     { "SET_BATTERY_LEVEL",              0x0000031a },
+    { "BLOCK_SHUTDOWN",                 0x0000031b },
+    { "ALLOW_SHUTDOWN",                 0x0000031c },
     { "SET_THERMAL_STATUS",             0x00000320 },
     { "PROCESSWD_CREATE",               0x00000500 },
     { "PROCESSWD_DELETE",               0x00000501 },
